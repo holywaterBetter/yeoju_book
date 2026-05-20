@@ -1,6 +1,7 @@
 import { CheckCircle2, Circle } from "lucide-react";
 import { useMemo, useState } from "react";
 import type { GuideSection, Locale } from "../content/types";
+import { withBasePath } from "../utils/paths";
 
 interface Props {
   sections: GuideSection[];
@@ -71,7 +72,7 @@ export default function GuideChecklist({ sections, locale }: Props) {
             <div className="guide-media-grid" aria-label={`${section.title} media`}>
               {section.media.map((asset) => (
                 <figure key={`${section.id}-${asset.src}`}>
-                  <img src={asset.src} alt={asset.alt} loading="lazy" decoding="async" />
+                  <img src={withBasePath(asset.src)} alt={asset.alt} loading="lazy" decoding="async" />
                   {asset.caption ? <figcaption>{asset.caption}</figcaption> : null}
                 </figure>
               ))}

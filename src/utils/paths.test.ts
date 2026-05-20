@@ -12,6 +12,9 @@ describe("path helpers", () => {
     expect(withBasePath("/", "/yeoju_book/")).toBe("/yeoju_book/");
     expect(withBasePath("/en/", "/yeoju_book/")).toBe("/yeoju_book/en/");
     expect(withBasePath("/og-image.png", "/yeoju_book/")).toBe("/yeoju_book/og-image.png");
+    expect(withBasePath("/assets/pdf/hero-riverside-bike-path.webp", "/yeoju_book/")).toBe(
+      "/yeoju_book/assets/pdf/hero-riverside-bike-path.webp"
+    );
   });
 
   it("strips the configured base path before route logic runs", () => {

@@ -5,6 +5,7 @@ import EmergencyContacts from "./EmergencyContacts.astro";
 import ExternalCta from "./ExternalCta.astro";
 import FaqAccordion from "./FaqAccordion";
 import type { Locale, LocalizedContent } from "../content/types";
+import { withBasePath } from "../utils/paths";
 
 interface Props {
   locale: Locale;
@@ -56,7 +57,7 @@ const pageCopy = {
     <section class="hero section">
       <img
         class="hero-bg"
-        src={content.hero.media.src}
+        src={withBasePath(content.hero.media.src)}
         alt={content.hero.media.alt}
         loading="eager"
         decoding="async"
@@ -107,7 +108,7 @@ const pageCopy = {
       <div class="container safety-media-grid" aria-label={locale === "ko" ? "안전 장비 이미지" : "Safety equipment images"}>
         {safetyMedia.map((asset) => (
           <figure>
-            <img src={asset.src} alt={asset.alt} loading="lazy" decoding="async" />
+            <img src={withBasePath(asset.src)} alt={asset.alt} loading="lazy" decoding="async" />
             {asset.caption && <figcaption>{asset.caption}</figcaption>}
           </figure>
         ))}

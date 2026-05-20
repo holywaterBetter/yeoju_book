@@ -1,6 +1,7 @@
 import { Bike, Clock, Gauge, MapPin, Route, TriangleAlert } from "lucide-react";
 import { useState } from "react";
 import type { CourseContent, Locale } from "../content/types";
+import { withBasePath } from "../utils/paths";
 
 interface Props {
   courses: CourseContent[];
@@ -64,7 +65,7 @@ export default function CourseTabs({ courses, locale }: Props) {
       >
         <div className="course-panel-layout">
           <figure className="course-map">
-            <img src={activeCourse.mapImage.src} alt={activeCourse.mapImage.alt} loading="lazy" decoding="async" />
+            <img src={withBasePath(activeCourse.mapImage.src)} alt={activeCourse.mapImage.alt} loading="lazy" decoding="async" />
             {activeCourse.mapImage.caption ? <figcaption>{activeCourse.mapImage.caption}</figcaption> : null}
           </figure>
 
@@ -105,7 +106,7 @@ export default function CourseTabs({ courses, locale }: Props) {
         <div className="course-gallery" aria-label={`${activeCourse.name} media`}>
           {activeCourse.gallery.map((asset) => (
             <figure key={`${activeCourse.id}-${asset.src}`}>
-              <img src={asset.src} alt={asset.alt} loading="lazy" decoding="async" />
+              <img src={withBasePath(asset.src)} alt={asset.alt} loading="lazy" decoding="async" />
               {asset.caption ? <figcaption>{asset.caption}</figcaption> : null}
             </figure>
           ))}
