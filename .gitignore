@@ -4,4 +4,3 @@ dist/
 .env
 .env.*
 !.env.example
-yeoju_book_v1-수정요청.pdf
