@@ -58,6 +58,7 @@ content-source/
   pdf-extract.md
   pdf-annotations.md
 public/
+  CNAME
   robots.txt
   sitemap.xml
   og-image.svg
@@ -1891,13 +1892,22 @@ git commit -m "feat: add hidden guide page"
 ### Task 7: Add SEO Assets and GitHub Pages Deployment
 
 **Files:**
+- Create: `public/CNAME`
 - Create: `public/robots.txt`
 - Create: `public/sitemap.xml`
 - Create: `public/og-image.svg`
 - Create: `.github/workflows/deploy.yml`
 - Modify: `astro.config.mjs`
 
-- [ ] **Step 1: Create `public/robots.txt`**
+- [ ] **Step 1: Create `public/CNAME`**
+
+Use the first-choice custom domain from the design spec:
+
+```txt
+yeojubiketour.kr
+```
+
+- [ ] **Step 2: Create `public/robots.txt`**
 
 ```txt
 User-agent: *
@@ -1907,7 +1917,7 @@ Disallow: /guide/
 Sitemap: https://yeojubiketour.kr/sitemap.xml
 ```
 
-- [ ] **Step 2: Create `public/sitemap.xml`**
+- [ ] **Step 3: Create `public/sitemap.xml`**
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -1919,7 +1929,7 @@ Sitemap: https://yeojubiketour.kr/sitemap.xml
 </urlset>
 ```
 
-- [ ] **Step 3: Create `public/og-image.svg`**
+- [ ] **Step 4: Create `public/og-image.svg`**
 
 ```xml
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
@@ -1936,7 +1946,7 @@ Sitemap: https://yeojubiketour.kr/sitemap.xml
 </svg>
 ```
 
-- [ ] **Step 4: Create GitHub Actions workflow**
+- [ ] **Step 5: Create GitHub Actions workflow**
 
 ```yaml
 name: Deploy GitHub Pages
@@ -1987,12 +1997,25 @@ jobs:
         uses: actions/deploy-pages@v4
 ```
 
-- [ ] **Step 5: Verify build and static SEO files**
+- [ ] **Step 6: Configure repository Pages source**
+
+In GitHub repository settings, set Pages deployment source to GitHub Actions.
+
+Expected settings:
+
+```text
+Settings -> Pages -> Build and deployment -> Source: GitHub Actions
+```
+
+This is a repository setting, not a local file change.
+
+- [ ] **Step 7: Verify build and static SEO files**
 
 Run:
 
 ```bash
 npm run build
+Test-Path dist/CNAME
 Test-Path dist/robots.txt
 Test-Path dist/sitemap.xml
 Test-Path dist/og-image.svg
@@ -2000,10 +2023,10 @@ Test-Path dist/og-image.svg
 
 Expected: build passes and each `Test-Path` returns `True`.
 
-- [ ] **Step 6: Commit**
+- [ ] **Step 8: Commit**
 
 ```bash
-git add public/robots.txt public/sitemap.xml public/og-image.svg .github/workflows/deploy.yml astro.config.mjs
+git add public/CNAME public/robots.txt public/sitemap.xml public/og-image.svg .github/workflows/deploy.yml astro.config.mjs
 git commit -m "chore: add seo assets and pages deployment"
 ```
 
