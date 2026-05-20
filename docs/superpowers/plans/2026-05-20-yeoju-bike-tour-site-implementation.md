@@ -89,7 +89,7 @@ Ownership boundaries:
 
 ## Execution Status
 
-Last updated: 2026-05-20 21:34 KST
+Last updated: 2026-05-20 21:43 KST
 
 - [x] Task 1: Astro + React static site scaffolded and committed (`6ab292e`).
 - [x] Task 2: PDF text and annotation source extracted and committed (`a38900f`).
@@ -97,7 +97,7 @@ Last updated: 2026-05-20 21:34 KST
 - [x] Task 4: Layout, theme/language preferences, header/footer, and shared external CTA added; preference test and full build pass.
 - [x] Task 5: Public Korean `/` and English `/en/` homepage routes added with course tabs, FAQ accordion, emergency contacts, animated hero, and static SEO-readable content.
 - [x] Task 6: Hidden operator guide pages added at `/guide/` and `/en/guide/`; public homepage navigation remains free of guide links.
-- [x] Task 7: SEO assets, `CNAME`, sitemap, robots policy, absolute canonical/OG URLs, and GitHub Pages workflow added.
+- [x] Task 7: SEO assets, `CNAME`, sitemap, robots policy, absolute canonical/OG URLs, and GitHub Pages workflow added; workflow was later hardened with `actions/configure-pages@v5`.
 - [x] Task 8: Final QA and browser verification completed.
 
 Latest verification:
@@ -111,6 +111,10 @@ Latest verification:
 - Production preview QA was run against `http://127.0.0.1:4322/` using the in-app browser at desktop `1280x720` and mobile `390x844`.
 - Browser QA confirmed Korean homepage, English homepage, hidden Korean guide page, and mobile homepage render nonblank, without console errors/warnings, without framework error overlays, and without the Astro dev toolbar.
 - Interaction QA confirmed language switching to `/en/`, theme toggle state change, English Ohak course tab selection, FAQ expansion, and guide checklist progress changing to `1/21`.
+- Additional production preview QA was run against `http://127.0.0.1:4322/` at `1920x1080`, `2550x1440`, and `390x844`.
+- The responsive QA covered `/`, `/en/`, and `/guide/` at each viewport and found no horizontal document overflow, no console issues, no framework overlays, and no unhydrated islands.
+- Independent Playwright screenshots using the local Microsoft Edge channel were captured for `1920x1080`, `2550x1440`, and `390x844` after motion settled, because the in-app browser's `2550x1440` screenshot contained a capture artifact even though DOM/layout checks passed.
+- `npm ci`, `npm test`, and `npm run build` were run after the workflow hardening; all completed successfully. `npm ci` reported 5 moderate dependency audit findings, which were not auto-fixed because `npm audit fix --force` may introduce breaking changes.
 
 Deployment note:
 
