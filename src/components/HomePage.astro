@@ -12,6 +12,9 @@ interface Props {
 }
 
 const { locale, content } = Astro.props;
+const equipmentMedia = content.guide.sections.find((section) => section.id === "equipment")?.media ?? [];
+const ridingSafetyMedia = content.guide.sections.find((section) => section.id === "safety")?.media ?? [];
+const safetyMedia = [...equipmentMedia, ...ridingSafetyMedia].slice(0, 4);
 const pageCopy = {
   ko: {
     courseKicker: "Course",
@@ -51,6 +54,15 @@ const pageCopy = {
 <BaseLayout locale={locale} content={content}>
   <main>
     <section class="hero section">
+      <img
+        class="hero-bg"
+        src={content.hero.media.src}
+        alt={content.hero.media.alt}
+        loading="eager"
+        decoding="async"
+        fetchpriority="high"
+      />
+      <div class="hero-shade" aria-hidden="true"></div>
       <div class="container hero-grid">
         <div class="hero-copy">
           <h1>{content.hero.title}</h1>
@@ -60,14 +72,6 @@ const pageCopy = {
             <ExternalCta links={content.externalLinks} kind="reservation" label={content.hero.primaryCta} />
             <ExternalCta links={content.externalLinks} kind="kakao" label={content.hero.secondaryCta} />
           </div>
-        </div>
-        <div class="hero-visual" aria-hidden="true">
-          <div class="river-ribbon"></div>
-          <div class="route-line"></div>
-          <span class="hangul-marker marker-start">ㅎ</span>
-          <span class="hangul-marker marker-mid">ㅈ</span>
-          <span class="hangul-marker marker-end">ㅌ</span>
-          <span class="bike-pulse"></span>
         </div>
       </div>
     </section>
@@ -99,6 +103,14 @@ const pageCopy = {
         <ul class="safety-list">
           {pageCopy.safetyItems.map((item) => <li>{item}</li>)}
         </ul>
+      </div>
+      <div class="container safety-media-grid" aria-label={locale === "ko" ? "안전 장비 이미지" : "Safety equipment images"}>
+        {safetyMedia.map((asset) => (
+          <figure>
+            <img src={asset.src} alt={asset.alt} loading="lazy" decoding="async" />
+            {asset.caption && <figcaption>{asset.caption}</figcaption>}
+          </figure>
+        ))}
       </div>
     </section>
 

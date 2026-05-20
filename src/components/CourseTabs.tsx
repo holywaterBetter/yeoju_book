@@ -62,35 +62,53 @@ export default function CourseTabs({ courses, locale }: Props) {
         aria-labelledby={`course-tab-${activeCourse.id}`}
         className="course-panel"
       >
-        <div className="course-stats" aria-label={`${activeCourse.name} ${copy.summarySuffix}`}>
-          {stats.map(({ label, value, icon: Icon }) => (
-            <span key={label}>
-              <Icon aria-hidden="true" size={18} />
-              {value}
-            </span>
-          ))}
+        <div className="course-panel-layout">
+          <figure className="course-map">
+            <img src={activeCourse.mapImage.src} alt={activeCourse.mapImage.alt} loading="lazy" decoding="async" />
+            {activeCourse.mapImage.caption ? <figcaption>{activeCourse.mapImage.caption}</figcaption> : null}
+          </figure>
+
+          <div>
+            <div className="course-stats" aria-label={`${activeCourse.name} ${copy.summarySuffix}`}>
+              {stats.map(({ label, value, icon: Icon }) => (
+                <span key={label}>
+                  <Icon aria-hidden="true" size={18} />
+                  {value}
+                </span>
+              ))}
+            </div>
+
+            <div className="course-summary-grid">
+              <div>
+                <h3>{copy.highlightsTitle}</h3>
+                <ul className="course-highlights">
+                  {activeCourse.highlights.map((highlight) => (
+                    <li key={highlight}>{highlight}</li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <h3>{copy.cautionsTitle}</h3>
+                <ul className="course-cautions">
+                  {activeCourse.cautions.map((caution) => (
+                    <li key={caution}>
+                      <TriangleAlert aria-hidden="true" size={16} />
+                      <span>{caution}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div className="course-summary-grid">
-          <div>
-            <h3>{copy.highlightsTitle}</h3>
-            <ul className="course-highlights">
-              {activeCourse.highlights.map((highlight) => (
-                <li key={highlight}>{highlight}</li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h3>{copy.cautionsTitle}</h3>
-            <ul className="course-cautions">
-              {activeCourse.cautions.map((caution) => (
-                <li key={caution}>
-                  <TriangleAlert aria-hidden="true" size={16} />
-                  <span>{caution}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+        <div className="course-gallery" aria-label={`${activeCourse.name} media`}>
+          {activeCourse.gallery.map((asset) => (
+            <figure key={`${activeCourse.id}-${asset.src}`}>
+              <img src={asset.src} alt={asset.alt} loading="lazy" decoding="async" />
+              {asset.caption ? <figcaption>{asset.caption}</figcaption> : null}
+            </figure>
+          ))}
         </div>
 
         <ol className="course-timeline">

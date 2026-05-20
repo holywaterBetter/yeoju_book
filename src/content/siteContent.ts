@@ -5,6 +5,27 @@ const externalLinks = {
   kakaoChannelUrl: ""
 };
 
+const pdfAssets = {
+  hero: "/assets/pdf/hero-riverside-bike-path.webp",
+  riversideBridge: "/assets/pdf/riverside-bridge-ride.webp",
+  participantsBridge: "/assets/pdf/participants-river-bridge.webp",
+  guideOrientation: "/assets/pdf/guide-orientation.webp",
+  electricBike: "/assets/pdf/electric-bike.webp",
+  pasController: "/assets/pdf/pas-controller.webp",
+  intercomDevice: "/assets/pdf/intercom-device.webp",
+  roadFormation: "/assets/pdf/road-formation.webp",
+  handSignal: "/assets/pdf/hand-signal.webp",
+  groupOrientation: "/assets/pdf/group-orientation.webp",
+  riceFields: "/assets/pdf/yeoju-rice-fields.webp",
+  sejongMap: "/assets/pdf/sejong-course-map.webp",
+  hwangpoSailboat: "/assets/pdf/hwangpo-sailboat.webp",
+  groupBikes: "/assets/pdf/group-bikes-riverside.webp",
+  ohakMap: "/assets/pdf/ohak-course-map.webp",
+  greenRiceFields: "/assets/pdf/green-rice-fields.webp",
+  hwangpoSailboatSunset: "/assets/pdf/hwangpo-sailboat-sunset.webp",
+  autumnRiders: "/assets/pdf/autumn-riders.webp"
+} as const;
+
 export const siteContent: SiteContent = {
   ko: {
     meta: {
@@ -30,7 +51,13 @@ export const siteContent: SiteContent = {
       body:
         "남한강의 풍경과 세종의 도시 여주를 전기자전거로 달리며 한글 자음마다 숨은 장소 이야기를 만납니다.",
       primaryCta: "예약하기",
-      secondaryCta: "카카오톡 문의"
+      secondaryCta: "카카오톡 문의",
+      media: {
+        src: pdfAssets.hero,
+        alt: "남한강변 자전거길에서 라이더들이 줄지어 달리는 모습",
+        caption: "PDF 원본의 남한강 자전거길 사진",
+        role: "hero"
+      }
     },
     intro: {
       title: "강변 라이딩과 역사 해설이 만나는 여주",
@@ -45,6 +72,32 @@ export const siteContent: SiteContent = {
         duration: "약 5시간",
         rideTime: "자전거 주행 약 110분",
         difficulty: "5점 중 2점",
+        mapImage: {
+          src: pdfAssets.sejongMap,
+          alt: "한글길 세종편의 자전거 주행 경로 지도",
+          caption: "세종편 코스 지도",
+          role: "course-map"
+        },
+        gallery: [
+          {
+            src: pdfAssets.riversideBridge,
+            alt: "남한강 다리 옆 강변 자전거길을 달리는 라이더",
+            caption: "강변 자전거길 주행 구간",
+            role: "course-photo"
+          },
+          {
+            src: pdfAssets.riceFields,
+            alt: "여주 들판과 강변이 보이는 황금빛 논 풍경",
+            caption: "여주 쌀과 평야 이야기",
+            role: "story-photo"
+          },
+          {
+            src: pdfAssets.groupBikes,
+            alt: "남한강변에서 전기자전거와 함께 모인 참가자들",
+            caption: "가이드 투어 현장 분위기",
+            role: "tour-photo"
+          }
+        ],
         highlights: ["영월루", "여주보 전망대", "세종대왕릉(영릉)"],
         cautions: [
           "자전거·보행자 겸용 구간에서는 우측 주행을 유지합니다.",
@@ -133,6 +186,32 @@ export const siteContent: SiteContent = {
         duration: "약 5시간",
         rideTime: "자전거 주행 약 110분",
         difficulty: "5점 중 3점",
+        mapImage: {
+          src: pdfAssets.ohakMap,
+          alt: "한글길 오학편의 자전거 주행 경로 지도",
+          caption: "오학편 코스 지도",
+          role: "course-map"
+        },
+        gallery: [
+          {
+            src: pdfAssets.participantsBridge,
+            alt: "강변 다리 위에서 해설을 듣는 투어 참가자들",
+            caption: "남한강 전망 해설 지점",
+            role: "course-photo"
+          },
+          {
+            src: pdfAssets.hwangpoSailboat,
+            alt: "남한강 위를 지나는 황포돛배",
+            caption: "황포돛배와 여주 관광 이야기",
+            role: "story-photo"
+          },
+          {
+            src: pdfAssets.autumnRiders,
+            alt: "가을 나무길을 자전거로 이동하는 단체 참가자들",
+            caption: "현장형 그룹 라이딩",
+            role: "tour-photo"
+          }
+        ],
         highlights: ["영월루", "여주보 전망대", "신륵사"],
         cautions: [
           "차도와 인접한 구간에서는 우측 주행과 대열 간격을 유지합니다.",
@@ -291,6 +370,14 @@ export const siteContent: SiteContent = {
             "세나 인터콤으로 해설과 안전 지시를 명확하게 전달합니다.",
             "선두와 후미가 속도, 대열 간격, 낙오자를 함께 관리합니다.",
             "참가자의 만족도와 불편 사항을 수시로 확인합니다."
+          ],
+          media: [
+            {
+              src: pdfAssets.intercomDevice,
+              alt: "가이드가 사용하는 세나 인터콤 장치",
+              caption: "해설과 안전 지시를 전달하는 인터콤",
+              role: "guide-equipment"
+            }
           ]
         },
         {
@@ -301,6 +388,14 @@ export const siteContent: SiteContent = {
             "선두·후미 가이드를 소개하고 투어 중 신호 체계를 설명합니다.",
             "참가자가 이름, 출발지, 기대 요소를 짧게 공유하게 합니다.",
             "PAS 조작, 브레이크 사용, 출발과 정지 연습을 확인합니다."
+          ],
+          media: [
+            {
+              src: pdfAssets.guideOrientation,
+              alt: "출발 전 실내에서 가이드 설명을 듣는 참가자들",
+              caption: "출발 전 오리엔테이션",
+              role: "guide-process"
+            }
           ]
         },
         {
@@ -311,6 +406,20 @@ export const siteContent: SiteContent = {
             "출발은 PAS 0-1단에서 시작하고 숙련도에 따라 조절합니다.",
             "브레이크는 좌우를 함께 사용하며 급제동을 피하도록 안내합니다.",
             "인터콤은 가이드 지시가 잘 들리도록 착용 위치와 음량을 확인합니다."
+          ],
+          media: [
+            {
+              src: pdfAssets.electricBike,
+              alt: "투어에 사용하는 접이식 전기자전거",
+              caption: "투어용 전기자전거",
+              role: "guide-equipment"
+            },
+            {
+              src: pdfAssets.pasController,
+              alt: "전기자전거 PAS 단계와 속도를 표시하는 컨트롤러",
+              caption: "PAS 단계 확인 장치",
+              role: "guide-equipment"
+            }
           ]
         },
         {
@@ -321,6 +430,20 @@ export const siteContent: SiteContent = {
             "자전거 2-3대 거리의 안전거리를 유지합니다.",
             "옆으로 나란히 달리거나 임의 추월하지 않습니다.",
             "소지품 낙하 시 참가자는 멈추지 않고 후미 가이드가 수거합니다."
+          ],
+          media: [
+            {
+              src: pdfAssets.roadFormation,
+              alt: "도로 가장자리에서 일렬로 주행하는 자전거 참가자들",
+              caption: "일렬 주행과 안전거리",
+              role: "guide-safety"
+            },
+            {
+              src: pdfAssets.handSignal,
+              alt: "자전거 주행 중 오른손으로 방향을 알리는 수신호 그림",
+              caption: "주행 중 수신호",
+              role: "guide-safety"
+            }
           ]
         },
         {
@@ -331,6 +454,20 @@ export const siteContent: SiteContent = {
             "금은모래캠핑장 구간은 15km/h, PAS 3단을 기준으로 안내합니다.",
             "양섬-여주보 구간은 20-25km/h, PAS 3-5단을 기준으로 안내합니다.",
             "신륵사 관광지 안에서는 보행자 통행을 우선 확인합니다."
+          ],
+          media: [
+            {
+              src: pdfAssets.sejongMap,
+              alt: "한글길 세종편 운영 경로 지도",
+              caption: "세종편 코스 운영 확인",
+              role: "guide-map"
+            },
+            {
+              src: pdfAssets.ohakMap,
+              alt: "한글길 오학편 운영 경로 지도",
+              caption: "오학편 코스 운영 확인",
+              role: "guide-map"
+            }
           ]
         },
         {
@@ -341,6 +478,14 @@ export const siteContent: SiteContent = {
             "낙차 발생 시 그룹을 안전한 곳에 멈추고 신체 상태를 확인합니다.",
             "PAS 비작동 시 가이드 자전거 교환 또는 사무국 지원을 요청합니다.",
             "해설 이의제기 시 참가자 의견을 존중하고 공식 자료 기준을 설명합니다."
+          ],
+          media: [
+            {
+              src: pdfAssets.groupOrientation,
+              alt: "야외에서 가이드와 참가자들이 모여 안내를 듣는 모습",
+              caption: "상황 발생 시 그룹 정리",
+              role: "guide-scenario"
+            }
           ]
         },
         {
@@ -351,6 +496,14 @@ export const siteContent: SiteContent = {
             "자전거와 안전 장비 반납 상태를 확인합니다.",
             "참가자에게 좋았던 지점과 불편했던 지점을 짧게 묻습니다.",
             "예약 페이지와 카카오톡채널 안내는 실제 URL 확정 후 동일 문구로 정리합니다."
+          ],
+          media: [
+            {
+              src: pdfAssets.autumnRiders,
+              alt: "가을 나무길에서 함께 이동하는 자전거 투어 참가자들",
+              caption: "투어 마무리와 후기 유도",
+              role: "guide-closing"
+            }
           ]
         }
       ]
@@ -380,7 +533,13 @@ export const siteContent: SiteContent = {
       body:
         "Ride along the Namhangang River and discover Yeoju through Hangul consonant storytelling, royal heritage, riverside views, and local culture.",
       primaryCta: "Reserve",
-      secondaryCta: "KakaoTalk Contact"
+      secondaryCta: "KakaoTalk Contact",
+      media: {
+        src: pdfAssets.hero,
+        alt: "Cyclists riding in a line on the Namhangang riverside bike path",
+        caption: "Namhangang riverside bike path from the source PDF",
+        role: "hero"
+      }
     },
     intro: {
       title: "Ride through riverside scenery, history, and Hangul",
@@ -395,6 +554,32 @@ export const siteContent: SiteContent = {
         duration: "About 5 hours",
         rideTime: "About 110 minutes of riding",
         difficulty: "2 out of 5",
+        mapImage: {
+          src: pdfAssets.sejongMap,
+          alt: "Route map for the Hangul Road Sejong course",
+          caption: "Sejong course map",
+          role: "course-map"
+        },
+        gallery: [
+          {
+            src: pdfAssets.riversideBridge,
+            alt: "Cyclists riding beside a bridge on the riverside bike path",
+            caption: "Riverside riding section",
+            role: "course-photo"
+          },
+          {
+            src: pdfAssets.riceFields,
+            alt: "Golden rice fields and riverside landscape in Yeoju",
+            caption: "Yeoju rice-field story point",
+            role: "story-photo"
+          },
+          {
+            src: pdfAssets.groupBikes,
+            alt: "Tour participants gathered with e-bikes by the river",
+            caption: "Guided tour atmosphere",
+            role: "tour-photo"
+          }
+        ],
         highlights: ["Yeongwolru Pavilion", "Yeoju Weir Observatory", "King Sejong's Tomb"],
         cautions: [
           "Keep right on shared bicycle and pedestrian paths.",
@@ -453,6 +638,32 @@ export const siteContent: SiteContent = {
         duration: "About 5 hours",
         rideTime: "About 110 minutes of riding",
         difficulty: "3 out of 5",
+        mapImage: {
+          src: pdfAssets.ohakMap,
+          alt: "Route map for the Hangul Road Ohak course",
+          caption: "Ohak course map",
+          role: "course-map"
+        },
+        gallery: [
+          {
+            src: pdfAssets.participantsBridge,
+            alt: "Tour participants listening to a guide on a river bridge",
+            caption: "Namhangang viewpoint interpretation",
+            role: "course-photo"
+          },
+          {
+            src: pdfAssets.hwangpoSailboat,
+            alt: "A Hwangpo sailboat on the Namhangang River",
+            caption: "Hwangpo sailboat and Yeoju tourism",
+            role: "story-photo"
+          },
+          {
+            src: pdfAssets.autumnRiders,
+            alt: "A guided cycling group riding along an autumn tree-lined path",
+            caption: "Guided group riding",
+            role: "tour-photo"
+          }
+        ],
         highlights: ["Yeongwolru Pavilion", "Yeoju Weir Observatory", "Silleuksa Temple"],
         cautions: [
           "Keep a single-file formation near roads.",
@@ -564,6 +775,14 @@ export const siteContent: SiteContent = {
             "Use the intercom for clear interpretation and safety directions.",
             "Coordinate front and rear guide responsibilities.",
             "Check participant comfort throughout the tour."
+          ],
+          media: [
+            {
+              src: pdfAssets.intercomDevice,
+              alt: "Sena intercom device used by guides",
+              caption: "Intercom for interpretation and safety cues",
+              role: "guide-equipment"
+            }
           ]
         },
         {
@@ -574,6 +793,14 @@ export const siteContent: SiteContent = {
             "Introduce the lead and rear guides.",
             "Invite short participant introductions.",
             "Confirm PAS, braking, starting, and stopping practice."
+          ],
+          media: [
+            {
+              src: pdfAssets.guideOrientation,
+              alt: "Participants listening to guide instructions indoors before departure",
+              caption: "Pre-departure orientation",
+              role: "guide-process"
+            }
           ]
         },
         {
@@ -584,6 +811,20 @@ export const siteContent: SiteContent = {
             "Start with low PAS and adjust by rider confidence.",
             "Check helmet fit and intercom position.",
             "Carry basic repair and first-aid items."
+          ],
+          media: [
+            {
+              src: pdfAssets.electricBike,
+              alt: "Folding e-bike used for the tour",
+              caption: "Tour e-bike",
+              role: "guide-equipment"
+            },
+            {
+              src: pdfAssets.pasController,
+              alt: "E-bike controller showing PAS level and speed",
+              caption: "PAS controller",
+              role: "guide-equipment"
+            }
           ]
         },
         {
@@ -594,6 +835,20 @@ export const siteContent: SiteContent = {
             "Keep two to three bicycle lengths between riders.",
             "Avoid side-by-side riding and unplanned overtaking.",
             "Let the rear guide handle dropped belongings."
+          ],
+          media: [
+            {
+              src: pdfAssets.roadFormation,
+              alt: "Cyclists riding single file along the roadside",
+              caption: "Single-file riding and safe spacing",
+              role: "guide-safety"
+            },
+            {
+              src: pdfAssets.handSignal,
+              alt: "Illustration of a cyclist giving a hand signal",
+              caption: "Hand signals while riding",
+              role: "guide-safety"
+            }
           ]
         },
         {
@@ -604,6 +859,20 @@ export const siteContent: SiteContent = {
             "Use 15 km/h and PAS 3 as the guide standard near the camping area.",
             "Use 20-25 km/h and PAS 3-5 around Yangseom to Yeoju Weir.",
             "Prioritize pedestrians in the Silleuksa visitor area."
+          ],
+          media: [
+            {
+              src: pdfAssets.sejongMap,
+              alt: "Operating route map for the Sejong course",
+              caption: "Sejong course quick check",
+              role: "guide-map"
+            },
+            {
+              src: pdfAssets.ohakMap,
+              alt: "Operating route map for the Ohak course",
+              caption: "Ohak course quick check",
+              role: "guide-map"
+            }
           ]
         },
         {
@@ -614,6 +883,14 @@ export const siteContent: SiteContent = {
             "Stop the group safely and check physical condition after a fall.",
             "Swap with a guide bike or request operator support for PAS failure.",
             "Respect participant feedback and refer to official source material."
+          ],
+          media: [
+            {
+              src: pdfAssets.groupOrientation,
+              alt: "Guide and participants gathered outdoors for instructions",
+              caption: "Regrouping during field operations",
+              role: "guide-scenario"
+            }
           ]
         }
       ]

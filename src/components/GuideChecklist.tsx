@@ -67,6 +67,16 @@ export default function GuideChecklist({ sections, locale }: Props) {
               );
             })}
           </ul>
+          {section.media.length > 0 ? (
+            <div className="guide-media-grid" aria-label={`${section.title} media`}>
+              {section.media.map((asset) => (
+                <figure key={`${section.id}-${asset.src}`}>
+                  <img src={asset.src} alt={asset.alt} loading="lazy" decoding="async" />
+                  {asset.caption ? <figcaption>{asset.caption}</figcaption> : null}
+                </figure>
+              ))}
+            </div>
+          ) : null}
         </section>
       ))}
     </div>

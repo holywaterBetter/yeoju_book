@@ -19,12 +19,20 @@ export interface ExternalLinks {
   kakaoLabel: string;
 }
 
+export interface MediaAsset {
+  src: string;
+  alt: string;
+  caption?: string;
+  role?: string;
+}
+
 export interface HeroContent {
   title: string;
   subtitle: string;
   body: string;
   primaryCta: string;
   secondaryCta: string;
+  media: MediaAsset;
 }
 
 export interface CoursePoint {
@@ -41,6 +49,8 @@ export interface CourseContent {
   duration: string;
   rideTime: string;
   difficulty: string;
+  mapImage: MediaAsset;
+  gallery: MediaAsset[];
   highlights: string[];
   cautions: string[];
   points: CoursePoint[];
@@ -63,6 +73,7 @@ export interface GuideSection {
   title: string;
   summary: string;
   items: string[];
+  media: MediaAsset[];
 }
 
 export interface LocalizedContent {
