@@ -13,16 +13,22 @@ const { content, locale } = Astro.props;
 const currentPath = Astro.url.pathname;
 const navLabel = locale === "ko" ? "주요 메뉴" : "Primary navigation";
 const themeLabel = locale === "ko" ? "테마 전환" : "Switch theme";
+const homeHref = locale === "ko" ? "/" : "/en/";
+const isHomeRoute = currentPath === "/" || currentPath === "/en/" || currentPath === "/en";
+const navItems = content.navigation.map((item) => ({
+  ...item,
+  href: isHomeRoute ? item.href : `${homeHref}${item.href}`
+}));
 ---
 
 <header class="site-header">
   <div class="container header-inner">
-    <a class="brand" href="/" aria-label={content.hero.title}>
+    <a class="brand" href={homeHref} aria-label={content.hero.title}>
       <span class="brand-mark" aria-hidden="true">ㅎ</span>
       <span>{content.hero.title}</span>
     </a>
     <nav class="public-nav" aria-label={navLabel}>
-      {content.navigation.map((item) => <a href={item.href}>{item.label}</a>)}
+      {navItems.map((item) => <a href={item.href}>{item.label}</a>)}
     </nav>
     <div class="header-actions">
       <LanguageToggle locale={locale} currentPath={currentPath} />

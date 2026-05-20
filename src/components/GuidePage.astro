@@ -1,0 +1,89 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import EmergencyContacts from "./EmergencyContacts.astro";
+import GuideChecklist from "./GuideChecklist";
+import type { Locale, LocalizedContent } from "../content/types";
+
+interface Props {
+  locale: Locale;
+  content: LocalizedContent;
+}
+
+const { locale, content } = Astro.props;
+const copy = {
+  ko: {
+    title: "운영자용 숨김 자료",
+    intro:
+      "이 페이지는 공개 메뉴에 노출되지 않는 정적 운영 자료입니다. 링크를 아는 가이드와 운영자가 현장에서 빠르게 확인하는 용도이며, 로그인 보안 페이지는 아닙니다.",
+    toc: "운영 목차",
+    courseNotes: "코스별 빠른 확인",
+    emergency: "비상 연락망",
+    hiddenNote: "공개 홈페이지 내비게이션에는 노출하지 않습니다."
+  },
+  en: {
+    title: "Hidden Operator Materials",
+    intro:
+      "This static page is not listed in public navigation. It is intended for guides and operators who know the link, and it is not a login-protected area.",
+    toc: "Operator contents",
+    courseNotes: "Course quick checks",
+    emergency: "Emergency contacts",
+    hiddenNote: "This route stays out of the public homepage navigation."
+  }
+}[locale];
+---
+
+<BaseLayout
+  locale={locale}
+  content={content}
+  title={`${content.guide.title} | ${content.meta.title}`}
+  description={copy.intro}
+>
+  <main class="guide-page">
+    <section class="guide-hero section">
+      <div class="container guide-hero-inner">
+        <div>
+          <h1>{copy.title}</h1>
+          <p>{copy.intro}</p>
+        </div>
+        <p class="guide-hidden-note">{copy.hiddenNote}</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container guide-layout">
+        <aside class="guide-toc" aria-label={copy.toc}>
+          <strong>{copy.toc}</strong>
+          <nav>
+            {content.guide.sections.map((section) => <a href={`#${section.id}`}>{section.title}</a>)}
+          </nav>
+        </aside>
+
+        <div>
+          <GuideChecklist client:load sections={content.guide.sections} locale={locale} />
+
+          <section class="guide-course-notes">
+            <h2>{copy.courseNotes}</h2>
+            <div class="guide-course-grid">
+              {content.courses.map((course) => (
+                <article class="guide-course-card">
+                  <h3>{course.name}</h3>
+                  <p>
+                    {course.distance} · {course.duration} · {course.difficulty}
+                  </p>
+                  <ul>
+                    {course.cautions.map((caution) => <li>{caution}</li>)}
+                  </ul>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section class="guide-emergency">
+            <h2>{copy.emergency}</h2>
+            <EmergencyContacts contacts={content.emergencyContacts} />
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
