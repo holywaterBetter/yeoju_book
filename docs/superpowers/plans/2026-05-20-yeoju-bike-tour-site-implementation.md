@@ -87,6 +87,26 @@ Ownership boundaries:
 
 ---
 
+## Execution Status
+
+Last updated: 2026-05-20 21:10 KST
+
+- [x] Task 1: Astro + React static site scaffolded and committed (`6ab292e`).
+- [x] Task 2: PDF text and annotation source extracted and committed (`a38900f`).
+- [x] Task 3: Typed bilingual site content added; content test and full build pass.
+- [ ] Task 4: Build layout, preferences, and shared CTA components.
+- [ ] Task 5: Build public homepage.
+- [ ] Task 6: Build hidden `/guide` operator page.
+- [ ] Task 7: Add SEO assets and GitHub Pages workflow.
+- [ ] Task 8: Run final QA and browser verification.
+
+Latest verification:
+
+- `npm test -- src/content/siteContent.test.ts`: 4 tests passed.
+- `npm run build`: 0 Astro check errors, 0 warnings, static build passed.
+
+---
+
 ### Task 1: Scaffold Astro + React Static Site
 
 **Files:**
