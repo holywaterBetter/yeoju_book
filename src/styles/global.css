@@ -1,0 +1,44 @@
+@import "./tokens.css";
+@import "./motion.css";
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: light;
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: Pretendard, "Noto Sans KR", system-ui, sans-serif;
+  line-height: 1.7;
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+.container {
+  width: min(100% - 32px, 1180px);
+  margin-inline: auto;
+}
+
+.section {
+  padding-block: clamp(72px, 9vw, 112px);
+}
