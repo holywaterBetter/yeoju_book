@@ -21,9 +21,11 @@
     "@astrojs/check": "latest",
     "@testing-library/jest-dom": "latest",
     "@testing-library/react": "latest",
+    "@types/node": "^25.9.1",
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "jsdom": "latest",
+    "playwright": "^1.60.0",
     "typescript": "latest",
     "vitest": "latest"
   }

@@ -11,7 +11,7 @@ describe("path helpers", () => {
   it("prefixes routes with the configured base path", () => {
     expect(withBasePath("/", "/yeoju_book/")).toBe("/yeoju_book/");
     expect(withBasePath("/en/", "/yeoju_book/")).toBe("/yeoju_book/en/");
-    expect(withBasePath("/og-image.svg", "/yeoju_book/")).toBe("/yeoju_book/og-image.svg");
+    expect(withBasePath("/og-image.png", "/yeoju_book/")).toBe("/yeoju_book/og-image.png");
   });
 
   it("strips the configured base path before route logic runs", () => {

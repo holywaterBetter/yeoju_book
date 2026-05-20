@@ -14,7 +14,7 @@ interface Props {
 
 const { locale, content, title = content.meta.title, description = content.meta.description } = Astro.props;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
-const ogImageUrl = new URL(withBasePath("/og-image.svg"), Astro.site).toString();
+const ogImageUrl = new URL(withBasePath("/og-image.png"), Astro.site).toString();
 ---
 
 <!doctype html>
@@ -24,6 +24,7 @@ const ogImageUrl = new URL(withBasePath("/og-image.svg"), Astro.site).toString()
     <meta name="viewport" content="width=device-width" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="icon" href={withBasePath("/favicon.svg")} type="image/svg+xml" />
     <link rel="canonical" href={canonicalUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />

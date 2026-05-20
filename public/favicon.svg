@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="따르릉 여주 한글길">
+  <rect width="64" height="64" rx="14" fill="#f7faf8"/>
+  <rect x="8" y="8" width="48" height="48" rx="10" fill="#ffffff" stroke="#167c80" stroke-width="4"/>
+  <text x="32" y="41" text-anchor="middle" font-family="Malgun Gothic, Pretendard, sans-serif" font-size="28" font-weight="800" fill="#3046a6">ㅎ</text>
+</svg>
