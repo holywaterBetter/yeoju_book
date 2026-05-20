@@ -31,9 +31,7 @@ const { locale, content, title = content.meta.title, description = content.meta.
         const savedTheme = localStorage.getItem("yeoju-theme");
         const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
         const theme = savedTheme === "dark" || savedTheme === "light" ? savedTheme : prefersDark ? "dark" : "light";
-        const urlLocale = new URLSearchParams(window.location.search).get("lang");
-        const savedLocale = localStorage.getItem("yeoju-locale");
-        const locale = urlLocale === "en" || urlLocale === "ko" ? urlLocale : savedLocale === "en" || savedLocale === "ko" ? savedLocale : root.dataset.locale || "ko";
+        const locale = root.dataset.locale || "ko";
 
         root.dataset.theme = theme;
         root.dataset.locale = locale;
@@ -44,6 +42,6 @@ const { locale, content, title = content.meta.title, description = content.meta.
   <body>
     <AppHeader content={content} locale={locale} />
     <slot />
-    <AppFooter content={content} />
+    <AppFooter content={content} locale={locale} />
   </body>
 </html>

@@ -1,11 +1,14 @@
 ---
-import type { LocalizedContent } from "../content/types";
+import type { Locale, LocalizedContent } from "../content/types";
 
 interface Props {
   content: LocalizedContent;
+  locale: Locale;
 }
 
-const { content } = Astro.props;
+const { content, locale } = Astro.props;
+const externalServiceNote =
+  locale === "ko" ? "예약과 문의는 외부 서비스로 연결됩니다." : "Reservations and inquiries connect to external services.";
 ---
 
 <footer class="site-footer">
@@ -14,6 +17,6 @@ const { content } = Astro.props;
       <strong>{content.hero.title}</strong>
       <p>{content.meta.description}</p>
     </div>
-    <p class="muted">예약과 문의는 외부 서비스로 연결됩니다.</p>
+    <p class="muted">{externalServiceNote}</p>
   </div>
 </footer>

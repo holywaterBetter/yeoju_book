@@ -10,6 +10,9 @@ interface Props {
 }
 
 const { content, locale } = Astro.props;
+const currentPath = Astro.url.pathname;
+const navLabel = locale === "ko" ? "주요 메뉴" : "Primary navigation";
+const themeLabel = locale === "ko" ? "테마 전환" : "Switch theme";
 ---
 
 <header class="site-header">
@@ -18,12 +21,12 @@ const { content, locale } = Astro.props;
       <span class="brand-mark" aria-hidden="true">ㅎ</span>
       <span>{content.hero.title}</span>
     </a>
-    <nav class="public-nav" aria-label="주요 메뉴">
+    <nav class="public-nav" aria-label={navLabel}>
       {content.navigation.map((item) => <a href={item.href}>{item.label}</a>)}
     </nav>
     <div class="header-actions">
-      <LanguageToggle client:load locale={locale} />
-      <ThemeToggle client:load />
+      <LanguageToggle locale={locale} currentPath={currentPath} />
+      <ThemeToggle client:load label={themeLabel} />
       <ExternalCta links={content.externalLinks} kind="reservation" label={content.hero.primaryCta} compact />
     </div>
   </div>
