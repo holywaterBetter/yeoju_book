@@ -1,0 +1,30 @@
+---
+import ExternalCta from "./ExternalCta.astro";
+import LanguageToggle from "./LanguageToggle";
+import ThemeToggle from "./ThemeToggle";
+import type { Locale, LocalizedContent } from "../content/types";
+
+interface Props {
+  content: LocalizedContent;
+  locale: Locale;
+}
+
+const { content, locale } = Astro.props;
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="/" aria-label={content.hero.title}>
+      <span class="brand-mark" aria-hidden="true">ㅎ</span>
+      <span>{content.hero.title}</span>
+    </a>
+    <nav class="public-nav" aria-label="주요 메뉴">
+      {content.navigation.map((item) => <a href={item.href}>{item.label}</a>)}
+    </nav>
+    <div class="header-actions">
+      <LanguageToggle client:load locale={locale} />
+      <ThemeToggle client:load />
+      <ExternalCta links={content.externalLinks} kind="reservation" label={content.hero.primaryCta} compact />
+    </div>
+  </div>
+</header>

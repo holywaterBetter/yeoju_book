@@ -1,0 +1,19 @@
+---
+import type { LocalizedContent } from "../content/types";
+
+interface Props {
+  content: LocalizedContent;
+}
+
+const { content } = Astro.props;
+---
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>
+      <strong>{content.hero.title}</strong>
+      <p>{content.meta.description}</p>
+    </div>
+    <p class="muted">예약과 문의는 외부 서비스로 연결됩니다.</p>
+  </div>
+</footer>
