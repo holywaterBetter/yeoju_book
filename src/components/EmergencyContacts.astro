@@ -1,0 +1,21 @@
+---
+import type { EmergencyContact } from "../content/types";
+
+interface Props {
+  contacts: EmergencyContact[];
+}
+
+const { contacts } = Astro.props;
+---
+
+<div class="emergency-grid">
+  {
+    contacts.map((contact) => (
+      <a class="emergency-card" href={contact.href}>
+        <strong>{contact.label}</strong>
+        <span>{contact.value}</span>
+        <small>{contact.description}</small>
+      </a>
+    ))
+  }
+</div>

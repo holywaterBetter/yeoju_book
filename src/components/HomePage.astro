@@ -1,0 +1,121 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import CourseTabs from "./CourseTabs";
+import EmergencyContacts from "./EmergencyContacts.astro";
+import ExternalCta from "./ExternalCta.astro";
+import FaqAccordion from "./FaqAccordion";
+import type { Locale, LocalizedContent } from "../content/types";
+
+interface Props {
+  locale: Locale;
+  content: LocalizedContent;
+}
+
+const { locale, content } = Astro.props;
+const pageCopy = {
+  ko: {
+    courseKicker: "Course",
+    courseTitle: "세종편과 오학편을 선택해 살펴보세요",
+    safetyKicker: "Safety",
+    safetyTitle: "가이드가 함께하는 안전한 전기자전거 투어",
+    safetyItems: [
+      "출발 전 오리엔테이션과 주행 연습",
+      "PAS 조작법과 브레이크 사용법 안내",
+      "세나 인터콤을 통한 주행 중 안전 안내",
+      "선두·후미 가이드의 대열 관리"
+    ],
+    faqKicker: "FAQ",
+    faqTitle: "자주 묻는 질문",
+    accessKicker: "Emergency",
+    accessTitle: "비상 연락망"
+  },
+  en: {
+    courseKicker: "Course",
+    courseTitle: "Choose between the Sejong and Ohak routes",
+    safetyKicker: "Safety",
+    safetyTitle: "A guided e-bike tour designed around safe group riding",
+    safetyItems: [
+      "Orientation and practice before departure",
+      "PAS controls and brake guidance",
+      "In-ride safety instructions through intercoms",
+      "Formation management by lead and rear guides"
+    ],
+    faqKicker: "FAQ",
+    faqTitle: "Frequently asked questions",
+    accessKicker: "Emergency",
+    accessTitle: "Emergency contacts"
+  }
+}[locale];
+---
+
+<BaseLayout locale={locale} content={content}>
+  <main>
+    <section class="hero section">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <h1>{content.hero.title}</h1>
+          <p class="hero-subtitle">{content.hero.subtitle}</p>
+          <p>{content.hero.body}</p>
+          <div class="cta-row">
+            <ExternalCta links={content.externalLinks} kind="reservation" label={content.hero.primaryCta} />
+            <ExternalCta links={content.externalLinks} kind="kakao" label={content.hero.secondaryCta} />
+          </div>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="river-ribbon"></div>
+          <div class="route-line"></div>
+          <span class="hangul-marker marker-start">ㅎ</span>
+          <span class="hangul-marker marker-mid">ㅈ</span>
+          <span class="hangul-marker marker-end">ㅌ</span>
+          <span class="bike-pulse"></span>
+        </div>
+      </div>
+    </section>
+
+    <section id="intro" class="section">
+      <div class="container split-section">
+        <div>
+          <p class="section-kicker">Yeoju Ride</p>
+          <h2>{content.intro.title}</h2>
+        </div>
+        <p>{content.intro.body}</p>
+      </div>
+    </section>
+
+    <section id="courses" class="section surface-band">
+      <div class="container">
+        <p class="section-kicker">{pageCopy.courseKicker}</p>
+        <h2>{pageCopy.courseTitle}</h2>
+        <CourseTabs client:load courses={content.courses} locale={locale} />
+      </div>
+    </section>
+
+    <section id="safety" class="section">
+      <div class="container split-section">
+        <div>
+          <p class="section-kicker">{pageCopy.safetyKicker}</p>
+          <h2>{pageCopy.safetyTitle}</h2>
+        </div>
+        <ul class="safety-list">
+          {pageCopy.safetyItems.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+    </section>
+
+    <section id="faq" class="section surface-band">
+      <div class="container">
+        <p class="section-kicker">{pageCopy.faqKicker}</p>
+        <h2>{pageCopy.faqTitle}</h2>
+        <FaqAccordion client:load items={content.faq} />
+      </div>
+    </section>
+
+    <section id="access" class="section">
+      <div class="container">
+        <p class="section-kicker">{pageCopy.accessKicker}</p>
+        <h2>{pageCopy.accessTitle}</h2>
+        <EmergencyContacts contacts={content.emergencyContacts} />
+      </div>
+    </section>
+  </main>
+</BaseLayout>

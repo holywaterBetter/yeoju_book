@@ -1,0 +1,30 @@
+---
+import type { ExternalLinks } from "../content/types";
+
+interface Props {
+  links: ExternalLinks;
+  kind: "reservation" | "kakao";
+  compact?: boolean;
+  label?: string;
+}
+
+const { links, kind, compact = false, label } = Astro.props;
+const href = kind === "reservation" ? links.reservationUrl : links.kakaoChannelUrl;
+const readyLabel = label ?? (kind === "reservation" ? "예약하기" : "카카오톡 문의");
+const pendingLabel = kind === "reservation" ? links.reservationLabel : links.kakaoLabel;
+const className = ["external-cta", `external-cta-${kind}`, compact ? "external-cta-compact" : ""]
+  .filter(Boolean)
+  .join(" ");
+---
+
+{
+  href ? (
+    <a class={className} href={href} target="_blank" rel="noreferrer">
+      {readyLabel}
+    </a>
+  ) : (
+    <span class={`${className} is-disabled`} aria-disabled="true">
+      {pendingLabel}
+    </span>
+  )
+}

@@ -1,0 +1,51 @@
+---
+import "../styles/global.css";
+import AppFooter from "../components/AppFooter.astro";
+import AppHeader from "../components/AppHeader.astro";
+import type { Locale, LocalizedContent } from "../content/types";
+
+interface Props {
+  locale: Locale;
+  content: LocalizedContent;
+  title?: string;
+  description?: string;
+}
+
+const { locale, content, title = content.meta.title, description = content.meta.description } = Astro.props;
+const canonicalUrl = new URL(Astro.url.pathname, "https://yeojubiketour.kr").toString();
+const ogImageUrl = new URL("/og-image.svg", "https://yeojubiketour.kr").toString();
+---
+
+<!doctype html>
+<html lang={locale} data-locale={locale} data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <script is:inline>
+      (() => {
+        const root = document.documentElement;
+        const savedTheme = localStorage.getItem("yeoju-theme");
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const theme = savedTheme === "dark" || savedTheme === "light" ? savedTheme : prefersDark ? "dark" : "light";
+        const locale = root.dataset.locale || "ko";
+
+        root.dataset.theme = theme;
+        root.dataset.locale = locale;
+        root.lang = locale;
+      })();
+    </script>
+  </head>
+  <body>
+    <AppHeader content={content} locale={locale} />
+    <slot />
+    <AppFooter content={content} locale={locale} />
+  </body>
+</html>
