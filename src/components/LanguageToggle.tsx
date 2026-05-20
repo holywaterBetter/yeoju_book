@@ -1,5 +1,6 @@
 import { Languages } from "lucide-react";
 import type { Locale } from "../content/types";
+import { stripBasePath, withBasePath } from "../utils/paths";
 
 interface Props {
   locale: Locale;
@@ -15,14 +16,15 @@ function normalizePath(path: string) {
 }
 
 function getTargetHref(locale: Locale, currentPath: string) {
-  const path = normalizePath(currentPath);
+  const path = normalizePath(stripBasePath(currentPath));
+  const targetPath =
+    locale === "ko"
+      ? path === "/"
+        ? "/en/"
+        : `/en${path}`
+      : path.replace(/^\/en(?=\/|$)/, "") || "/";
 
-  if (locale === "ko") {
-    return path === "/" ? "/en/" : `/en${path}`;
-  }
-
-  const withoutEnglishPrefix = path.replace(/^\/en(?=\/|$)/, "") || "/";
-  return withoutEnglishPrefix;
+  return withBasePath(targetPath);
 }
 
 export default function LanguageToggle({ locale, currentPath }: Props) {

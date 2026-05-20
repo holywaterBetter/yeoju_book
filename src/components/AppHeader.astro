@@ -3,6 +3,7 @@ import ExternalCta from "./ExternalCta.astro";
 import LanguageToggle from "./LanguageToggle";
 import ThemeToggle from "./ThemeToggle";
 import type { Locale, LocalizedContent } from "../content/types";
+import { stripBasePath, withBasePath } from "../utils/paths";
 
 interface Props {
   content: LocalizedContent;
@@ -11,13 +12,16 @@ interface Props {
 
 const { content, locale } = Astro.props;
 const currentPath = Astro.url.pathname;
+const routePath = stripBasePath(currentPath);
 const navLabel = locale === "ko" ? "주요 메뉴" : "Primary navigation";
 const themeLabel = locale === "ko" ? "테마 전환" : "Switch theme";
-const homeHref = locale === "ko" ? "/" : "/en/";
-const isHomeRoute = currentPath === "/" || currentPath === "/en/" || currentPath === "/en";
+const homePath = locale === "ko" ? "/" : "/en/";
+const homeHref = withBasePath(homePath);
+const isHomeRoute = routePath === "/" || routePath === "/en/" || routePath === "/en";
+const navBase = isHomeRoute ? homeHref : withBasePath(homePath);
 const navItems = content.navigation.map((item) => ({
   ...item,
-  href: isHomeRoute ? item.href : `${homeHref}${item.href}`
+  href: `${navBase}${item.href}`
 }));
 ---
 
