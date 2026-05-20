@@ -89,7 +89,7 @@ Ownership boundaries:
 
 ## Execution Status
 
-Last updated: 2026-05-20 21:43 KST
+Last updated: 2026-05-20 22:40 KST
 
 - [x] Task 1: Astro + React static site scaffolded and committed (`6ab292e`).
 - [x] Task 2: PDF text and annotation source extracted and committed (`a38900f`).
@@ -115,6 +115,9 @@ Latest verification:
 - The responsive QA covered `/`, `/en/`, and `/guide/` at each viewport and found no horizontal document overflow, no console issues, no framework overlays, and no unhydrated islands.
 - Independent Playwright screenshots using the local Microsoft Edge channel were captured for `1920x1080`, `2550x1440`, and `390x844` after motion settled, because the in-app browser's `2550x1440` screenshot contained a capture artifact even though DOM/layout checks passed.
 - `npm ci`, `npm test`, and `npm run build` were run after the workflow hardening; all completed successfully. `npm ci` reported 5 moderate dependency audit findings, which were not auto-fixed because `npm audit fix --force` may introduce breaking changes.
+- Live check of `https://holywaterbetter.github.io/yeoju_book/` found broken styling because GitHub Pages serves this repository under the `/yeoju_book/` project path while the build emitted root-based asset URLs.
+- Added `SITE_URL` and `BASE_PATH` build environment support, Astro `base` configuration, and shared base-path helpers for internal links, language links, canonical URLs, OG image URLs, and hydrated island assets.
+- Production preview QA was rerun against `http://127.0.0.1:4322/yeoju_book/` with GitHub Pages environment values; the homepage rendered styled, resolved assets under `/yeoju_book/_astro/`, hydrated without unresolved islands, and reported no console errors/warnings.
 
 Deployment note:
 

@@ -3,6 +3,7 @@ import "../styles/global.css";
 import AppFooter from "../components/AppFooter.astro";
 import AppHeader from "../components/AppHeader.astro";
 import type { Locale, LocalizedContent } from "../content/types";
+import { withBasePath } from "../utils/paths";
 
 interface Props {
   locale: Locale;
@@ -12,8 +13,8 @@ interface Props {
 }
 
 const { locale, content, title = content.meta.title, description = content.meta.description } = Astro.props;
-const canonicalUrl = new URL(Astro.url.pathname, "https://yeojubiketour.kr").toString();
-const ogImageUrl = new URL("/og-image.svg", "https://yeojubiketour.kr").toString();
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
+const ogImageUrl = new URL(withBasePath("/og-image.svg"), Astro.site).toString();
 ---
 
 <!doctype html>
