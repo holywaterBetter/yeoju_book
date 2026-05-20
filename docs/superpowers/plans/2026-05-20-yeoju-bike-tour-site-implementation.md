@@ -89,7 +89,7 @@ Ownership boundaries:
 
 ## Execution Status
 
-Last updated: 2026-05-20 21:24 KST
+Last updated: 2026-05-20 21:26 KST
 
 - [x] Task 1: Astro + React static site scaffolded and committed (`6ab292e`).
 - [x] Task 2: PDF text and annotation source extracted and committed (`a38900f`).
@@ -97,7 +97,7 @@ Last updated: 2026-05-20 21:24 KST
 - [x] Task 4: Layout, theme/language preferences, header/footer, and shared external CTA added; preference test and full build pass.
 - [x] Task 5: Public Korean `/` and English `/en/` homepage routes added with course tabs, FAQ accordion, emergency contacts, animated hero, and static SEO-readable content.
 - [x] Task 6: Hidden operator guide pages added at `/guide/` and `/en/guide/`; public homepage navigation remains free of guide links.
-- [ ] Task 7: Add SEO assets and GitHub Pages workflow.
+- [x] Task 7: SEO assets, `CNAME`, sitemap, robots policy, absolute canonical/OG URLs, and GitHub Pages workflow added.
 - [ ] Task 8: Run final QA and browser verification.
 
 Latest verification:
@@ -107,6 +107,11 @@ Latest verification:
 - `npm test`: 7 tests passed.
 - `npm run build`: 0 Astro check errors, 0 warnings, static build passed with `/`, `/en/`, `/guide/`, and `/en/guide/`.
 - `rg '/guide' dist/index.html dist/en/index.html`: no matches, confirming guide is not in public homepage navigation.
+- `dist/CNAME`, `dist/robots.txt`, `dist/sitemap.xml`, and `dist/og-image.svg` are generated from `public/`.
+
+Deployment note:
+
+- GitHub repository settings still need Pages source set to **GitHub Actions** after this branch is merged.
 
 ---
 
